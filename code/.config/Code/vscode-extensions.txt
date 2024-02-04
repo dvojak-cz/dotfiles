@@ -1,0 +1,17 @@
+cverge.jsonnet-lsp
+GitHub.copilot
+GitHub.copilot-chat
+Grafana.vscode-jsonnet
+mhutchie.git-graph
+ms-kubernetes-tools.vscode-kubernetes-tools
+ms-vscode-remote.remote-ssh
+ms-vscode.remote-explorer
+oderwat.indent-rainbow
+puppet.puppet-vscode
+redhat.vscode-yaml
+streetsidesoftware.code-spell-checker
+tal7aouy.rainbow-bracket
+tomphilbin.gruvbox-themes
+vscodevim.vim
+waderyan.gitblame
+weaveworks.vscode-gitops-tools
