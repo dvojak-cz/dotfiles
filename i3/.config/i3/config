@@ -224,5 +224,4 @@ exec feh --randomize --bg-fill /home/jan/Pictures/fsociety.jpg
 
 bar {
         status_command i3status
-        tray_output eDP-1 #HDMI-1
 }
