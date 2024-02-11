@@ -1,104 +1,43 @@
--- Install package manager
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+-- lazy vim plugin manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system {
-        'git',
-        'clone',
-        '--filter=blob:none',
-        'https://github.com/folke/lazy.nvim.git',
-        '--branch=stable', -- latest stable release
-        lazypath,
-    }
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-    -- ============================================
-    -- ==================== UI ====================
-    'mbbill/undotree',
-    'navarasu/onedark.nvim',
-    'folke/zen-mode.nvim',
-    {'akinsho/bufferline.nvim', version = "v3.*", dependencies = 'nvim-tree/nvim-web-devicons'},
+local plugins = {
+    -- Add your other plugins here
+    {'nvim-telescope/telescope.nvim', tag = '0.1.5', dependencies = { 'nvim-lua/plenary.nvim' } },
+    {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"},
+    { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true},
+    {"mbbill/undotree"},
+
+     -- LSP Support
+    {'williamboman/mason.nvim'},
+    {'williamboman/mason-lspconfig.nvim'},
+    {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x', lazy = true, config = false},
+    {'neovim/nvim-lspconfig', dependencies = {{'hrsh7th/cmp-nvim-lsp'}}},
+    -- Autocompletion
+    {'hrsh7th/nvim-cmp', dependencies = {{'L3MON4D3/LuaSnip'}}},
+
     -- GIT
-    'tpope/vim-fugitive',
-    'lewis6991/gitsigns.nvim',
+    {'lewis6991/gitsigns.nvim'},
 
-    -- ============================================
-    -- ================ TREESITTER ================
-    {
-        'nvim-treesitter/nvim-treesitter',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter-textobjects',
-        },
-        config = function()
-            pcall(require('nvim-treesitter.install').update { with_sync = true })
-        end,
-    },
-    'nvim-treesitter/nvim-treesitter-context', -- keeps last definition (funsciont...) in view
-
-    -- ============================================
-    -- =================== LSP ====================
-    {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        dependencies = {
-            -- LSP Support
-            { 'neovim/nvim-lspconfig' }, -- Required
-            {
-                -- Optional
-                'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },                  -- Required
-            { 'hrsh7th/cmp-nvim-lsp' },              -- Required
-            { 'hrsh7th/cmp-nvim-lua' },
-            { 'hrsh7th/cmp-path' },
-            { 'saadparwaiz1/cmp_luasnip' },
-            -- Snippets
-            { 'L3MON4D3/LuaSnip' },
-            { 'rafamadriz/friendly-snippets' },
+    -- Editor
+    {"nvim-neo-tree/neo-tree.nvim", branch = "v3.x", dependencies = {
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+          "MunifTanjim/nui.nvim",
+          -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
         }
     },
-    {
-        "folke/trouble.nvim",
-        config = function()
-            require("trouble").setup {
-                icons = false,
-            }
-        end,
-    },
+}
 
-    -- ============================================
-    -- =================== EDIT ===================
-    {
-        -- Set lualine as statusline
-        'nvim-lualine/lualine.nvim',
-        -- See `:help lualine.txt`
-        opts = {
-            options = {
-                icons_enabled = false,
-                theme = 'onedark',
-                component_separators = '|',
-                section_separators = '',
-            },
-        },
-    },
-
-    'windwp/nvim-autopairs',
-
-    -- ============================================
-    -- ================== FILES ===================
-    {
-        -- Fuzzy Finder (files, lsp, etc)
-        'nvim-telescope/telescope.nvim',
-        version = '*',
-        dependencies = { 'nvim-lua/plenary.nvim' }
-    },
-    'theprimeagen/harpoon',
-}, {})
+require("lazy").setup(plugins, opts)
