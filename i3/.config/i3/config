@@ -166,21 +166,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-workspace "1" output "HDMI-1"
-workspace "2" output "HDMI-1"
-workspace "3" output "HDMI-1"
-workspace "4" output "eDP-1"
-workspace "5" output "eDP-1"
-
-# Define commands to run your applications on specific workspaces
-exec --no-startup-id i3-msg "workspace 1; exec firefox"
-exec --no-startup-id i3-msg "workspace 3; exec terminator -e 'tmux attach || tmux' "
-exec --no-startup-id i3-msg "workspace 4; exec slack"
-exec --no-startup-id i3-msg "workspace 4; exec telegram"
-exec --no-startup-id i3-msg "workspace 5; exec firefox"
-
 bindsym $mod+space exec --no-startup-id "setxkbmap -query | grep -q 'layout:\s\+us' && setxkbmap cz -variant qwerty || setxkbmap us"
 bindsym $mod+Ctrl+Left move workspace to output left
 bindsym $mod+Ctrl+Right move workspace to output right
