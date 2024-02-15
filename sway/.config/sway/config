@@ -11,7 +11,7 @@ set $menu dmenu_run
 include ./config.d/*
 font pango:DejaVu Sans Mono 7
 
-
+exec "dbus-update-activation-environment --systemd DISPLAY MOZ_DBUS_REMOTE"
 bar {
     status_command ~/.config/sway/bar.sh
     font pango:DejaVu Sans Mono 7

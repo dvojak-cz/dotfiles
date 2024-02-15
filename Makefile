@@ -1,6 +1,6 @@
 .phony: build run stow unstow
 
-LIST=code git i3 nvim redshift ssh system terminator tmux vim zsh gtk k9s
+LIST=code git i3 nvim redshift ssh system terminator tmux vim zsh gtk k9s sway
 
 make_dirs:
 	@mkdir -p ~/.config/
