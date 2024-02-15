@@ -1,0 +1,18 @@
+set $mod Mod4
+
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $term terminator
+set $menu dmenu_run
+
+include ./config.d/*
+font pango:DejaVu Sans Mono 7
+
+
+bar {
+    status_command ~/.config/sway/bar.sh
+    font pango:DejaVu Sans Mono 7
+}
